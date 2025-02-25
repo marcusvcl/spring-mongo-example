@@ -21,6 +21,10 @@ public class User {
     private String role;
 
     public void updateFrom(UserRequest request) {
+        if (request == null) {
+            throw new IllegalArgumentException("request is required");
+        }
+
         this.name = Coalesce.of(request.getName(), this.name);
         this.email = Coalesce.of(request.getEmail(), this.email);
         this.password = Coalesce.of(request.getPassword(), this.password);
